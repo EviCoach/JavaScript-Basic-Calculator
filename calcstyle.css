@@ -1,0 +1,20 @@
+body{
+    background-color: whitesmoke;
+}
+#calculator-screen{
+    width: 150px;
+    display: block;
+    background-color: grey;
+    height: 20px;
+}
+.calculator-wrapper{
+    border: 2px solid grey;
+    width: 200px;
+    height: 400px;
+    display: block;
+}
+
+.calculator-button-container{
+    background-color: antiquewhite;
+    border: 2px solid black;
+}
