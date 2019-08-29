@@ -22,110 +22,44 @@ var btnArray = [
     btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
     btnAdd, btnSub, btnMult, btnDiv, btnEquals
 ];
-var btnValue;
-var screenResult = "";
-var arrayOfStringToNums = [];
-var sumArr = [], divideArr = [], subtractArr = [], multiplyArr = [];
-var finalResult = 0;
-var resultToDisplay = 0;
-var displayResult = 0;
 
-function calculate() {
-    divide(arr);
-    multiply(arr);
-    add(arr);
-    subtract(arr);
-
-    return result;
-}
-
-btnClear.addEventListener('click', () => {
-    window.location.reload();
-});
-
-btnEquals.addEventListener('click', calculate, false);
-
-
+var inputArr = [];
+var numConcat = "";
 
 for (var i = 0; i < btnArray.length; i++) {
 
     btnArray[i].addEventListener('click', (event) => {
-        var btnVal = event.target.value.toString();
-        screenResult += event.target.value.toString();
-        // mathSign = btnVal == "+" || btnVal == "-" || btnVal == "x" || btnVal == "/";
-        displayResult = screenResult;
-        if (btnVal == "+") {
-            var sumNum = screenResult;
-            sumNum.replace("+", "");
-            realNum = Number(sumNum);
-            sumArr.push(realNum);
-            screenResult = "";
-            resultToDisplay = sum(finalResult, sumArr);
+
+
+        if (event.target.value.toString() === "x") {
+            inputArr.push(numConcat);
+            inputArr.push("*");
+            numConcat = "";
+            screen.innerHTML += event.target.value.toString();
+        } else if (event.target.value.toString() == "=") {
+            inputArr.push(numConcat);
+            numConcat = "";
+            screen.innerHTML += event.target.value.toString() + eval(inputArr.join(''));
+        } else if (event.target.value.toString() == "="
+            || event.target.value.toString() == "+"
+            || event.target.value.toString() == "-"
+            || event.target.value.toString() == "/"
+            || event.target.value.toString() == "x") {
+            inputArr.push(numConcat);
+            inputArr.push(event.target.value.toString());
+            numConcat = "";
+            screen.innerHTML += event.target.value.toString();
+        } else if (event.target.value.toString() !== "="
+            || event.target.value.toString() !== "+"
+            || event.target.value.toString() !== "-"
+            || event.target.value.toString() !== "/"
+            || event.target.value.toString() !== "x") {
+            numConcat += event.target.value.toString();
+            screen.innerHTML += event.target.value.toString();
+
         }
-
-        if (btnVal == "x") {
-            var sumNum = screenResult;
-            sumNum.replace("x", "");
-            realNum = Number(sumNum);
-            multiplyArr.push(realNum);
-            screenResult = "";
-            resultToDisplay = multiply(finalResult, multiplyArr);
-        }
-
-        if (btnVal == "-") {
-            var sumNum = screenResult;
-            sumNum.replace("-", "");
-            realNum = Number(sumNum);
-            subtractArr.push(realNum);
-            screenResult = "";
-            resultToDisplay = subtract(finalResult, subtractArr);
-        }
-
-        if (btnVal == "/") {
-            var sumNum = screenResult;
-            sumNum.replace("/", "");
-            realNum = Number(sumNum);
-            divideArr.push(realNum);
-            screenResult = "";
-            resultToDisplay = divide(finalResult, divideArr);
-        }
-
-
-        screen.innerHTML = displayResult;
+        console.log(inputArr);
+        console.log(numConcat);
+        console.log(eval(inputArr.join('')));
     }, false);
-}
-
-
-
-
-function sum(val, arr) {
-    for (var i = 0; i < arr.length; i++) {
-        val += arr[i];
-    }
-    return val;
-}
-
-function subtract(val, arr) {
-    for (var i = 0; i < arr.length; i++) {
-        val -= arr[i];
-    }
-    return val;
-}
-
-function multiply(val, arr) {
-    for (var i = 0; i < arr.length; i++) {
-        val *= arr[i];
-    }
-    return val;
-}
-
-function divide(val, arr) {
-    for (var i = 0; i < arr[1].length; i++) {
-        val /= arr[i];
-    }
-    return val
-}
-
-function calculate() {
-    displayResult += " = " + resultToDisplay.toString();
 }
