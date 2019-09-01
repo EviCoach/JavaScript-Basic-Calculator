@@ -1,14 +1,20 @@
 body{
     background-color: whitesmoke;
 }
+h1{
+    text-align: center;
+}
 #calculator-screen{
-    width: 150px;
+    width: 197px;
     display: block;
-    background-color: grey;
+    border: 1px solid black;
     height: 20px;
 }
 .calculator-wrapper{
-    border: 2px solid grey;
+    /* border: 2px solid grey; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
     width: 200px;
     height: 400px;
     display: block;
@@ -16,5 +22,7 @@ body{
 
 .calculator-button-container{
     background-color: antiquewhite;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    display: grid;
+    grid-template-columns: auto auto auto auto auto
 }
